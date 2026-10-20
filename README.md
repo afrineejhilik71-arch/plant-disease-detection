@@ -1,16 +1,27 @@
-# Hybrid CNN Architecture for Plant Disease Classification
+# Hybrid CNN Architecture for Robust Plant Disease Classification
 
 ## Project Overview
 
-This repository contains the code and experimental work for my master's thesis, **“Hybrid CNN Architecture for Robust Multiclass Plant Disease Classification Across Diverse Datasets.”**
+This repository contains the code and preliminary experiments for my master's thesis, **“Hybrid CNN Architecture for Robust Multiclass Plant Disease Classification Across Diverse Datasets.”**
 
-The research aims to investigate deep learning approaches for plant disease classification, compare pretrained baseline models, and develop a hybrid CNN architecture with a focus on robust classification and generalization across diverse datasets.
+The research aims to investigate deep learning methods for plant disease classification, establish baseline performance using pretrained models, and develop and evaluate a hybrid CNN architecture. A key objective is to investigate model robustness and generalization across different plant disease classes and datasets.
+
+## Research Objectives
+
+The main objectives of this project are to:
+
+- Analyse and prepare plant disease image datasets for experimentation.
+- Establish baseline performance using pretrained deep learning models.
+- Investigate a hybrid CNN architecture for multiclass plant disease classification.
+- Compare models using classification metrics, including macro-F1.
+- Investigate generalization across crop classes and diverse datasets.
+- Explore explainable AI methods to understand model predictions.
 
 ## Dataset
 
-The initial experiments use the Tomato subset of the AgriVision4 plant disease dataset.
+The initial baseline experiments use the **Tomato subset of the AgriVision4 plant disease dataset**.
 
-The Tomato subset contains five classes:
+The subset contains five classes:
 
 - Downy Mildew
 - Healthy
@@ -18,17 +29,47 @@ The Tomato subset contains five classes:
 - Spot
 - White Spot
 
-The dataset was checked for duplicate images and conflicting labels before preparing the experimental split. Images with conflicting labels were provisionally excluded from the initial experiment.
+The dataset preparation workflow includes image inventory, duplicate-image detection using SHA-256 hashes, identification of identical image contents assigned to different class labels, and preparation of train, validation, and test splits.
+
+Images with conflicting labels were provisionally excluded from the initial Tomato experiment. Identical image contents were considered when preparing the data split to reduce the risk of duplicate-image leakage between subsets.
+
+The dataset files are not included in this repository. The experiments require access to the dataset separately.
+
+## Repository Contents
+
+### `01_agrivision_dataset_analysis.ipynb`
+
+Contains dataset inspection and analysis workflows for AgriVision4, including:
+
+- Image and class-count summaries.
+- Duplicate-image detection.
+- Identification of potential cross-class label conflicts.
+- Crop-level dataset analysis.
+- Preparation and inspection of experiment file lists and train, validation, and test splits.
+
+### `02_ResNet50_Baseline.ipynb`
+
+Contains the initial Tomato baseline workflow, including:
+
+- Tomato dataset inspection and preparation.
+- Duplicate and conflicting-label checks.
+- Creation and verification of the experimental data split.
+- Image preprocessing and data loaders.
+- Training and fine-tuning of ResNet50, EfficientNet-B0, and DenseNet121.
+- Validation-based checkpoint selection.
+- Test-set evaluation and recording of results in a CSV file.
+
+Although the filename refers to ResNet50, the notebook also contains the EfficientNet-B0 and DenseNet121 experiments.
 
 ## Baseline Experiments
 
-The following pretrained models have been evaluated in the initial Tomato experiment:
+Three pretrained models were evaluated on the Tomato subset:
 
-- ResNet50
-- EfficientNet-B0
-- DenseNet121
+- **ResNet50**
+- **EfficientNet-B0**
+- **DenseNet121**
 
-The models were evaluated using a common train, validation, and test split. Validation macro-F1 was used to select the best checkpoint for each model.
+The models use ImageNet-pretrained weights and the same intended train, validation, and test split. Validation macro-F1 was used to select the best checkpoint for each model.
 
 ### Preliminary Results
 
@@ -38,21 +79,44 @@ The models were evaluated using a common train, validation, and test split. Vali
 | EfficientNet-B0 | 5 | 66.91% | 0.550 | 73.48% | 0.573 |
 | DenseNet121 | 5 | 59.56% | 0.408 | 71.21% | 0.516 |
 
-- `01_agrivision_dataset_analysis.ipynb` — dataset inspection and analysis.
-- `02_ResNet50_Baseline.ipynb` — ResNet50 baseline experiment.
+These results are preliminary and represent one experimental split. They should not be interpreted as evidence that one architecture is universally superior. Further experiments are needed to assess result stability, class-wise performance, and generalization.
 
-Additional model experiments, comparative analysis, and hybrid architecture development are planned as the research progresses.
+## Current Research Status
 
-## Current Status
+The initial Tomato baseline experiments have been conducted for ResNet50, EfficientNet-B0, and DenseNet121.
 
-The initial Tomato baseline experiments have been conducted for ResNet50, EfficientNet-B0, and DenseNet121. The next stages include further literature analysis, improving experimental consistency, evaluating additional baselines, and investigating generalization across a broader range of plant disease classes and datasets.
+The next stages of the research include:
 
-## Reproducibility and Data
+1. Reviewing recent literature on hybrid CNN and Transformer-based architectures.
+2. Improving the consistency and documentation of baseline experiments.
+3. Evaluating additional baseline models where appropriate.
+4. Investigating performance across more crop classes and datasets.
+5. Designing and evaluating the proposed hybrid architecture.
+6. Analysing model predictions using explainability techniques and investigating cross-dataset generalization.
 
-The notebooks are intended to document the experimental workflow. Dataset files and trained model checkpoints are not included in this repository. Access to the dataset should follow its applicable licence and terms of use.
+The hybrid architecture and broader generalization experiments remain part of the ongoing research.
 
-The experiments were developed using Python, PyTorch, torchvision, and Google Colab.
+## Technologies
+
+The experiments use:
+
+- Python
+- PyTorch
+- torchvision
+- pandas
+- scikit-learn
+- Google Colab
+
+Training experiments use GPU acceleration when available.
+
+## Reproducibility and Data Availability
+
+The notebooks document the current experimental workflow. The dataset images and trained model checkpoint files are not included in this repository.
+
+The notebooks currently use Google Colab and Google Drive paths for accessing data and saving experiment outputs. To reproduce the experiments, users must configure the dataset paths, install compatible dependencies, and ensure that the required data and pretrained weights are accessible.
+
+Dataset access and use should comply with the dataset's applicable licence and terms.
 
 ## Research Purpose
 
-This repository supports academic research into robust plant disease classification and the development of a hybrid CNN-based approach for multiclass classification across diverse datasets.is
+This repository supports the development and evaluation of a hybrid CNN-based approach for robust multiclass plant disease classification. The long-term objective is to investigate whether the proposed approach can improve classification performance and generalization across diverse plant disease datasets.
