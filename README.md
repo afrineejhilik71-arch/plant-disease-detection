@@ -32,15 +32,11 @@ The models were evaluated using a common train, validation, and test split. Vali
 
 ### Preliminary Results
 
-| Model | Test Accuracy | Test Macro-F1 |
-|---|---:|---:|
-| ResNet50 | 62.88% | 0.393 |
-| EfficientNet-B0 | 71.21% | 0.547 |
-| DenseNet121 | 74.24% | 0.616 |
-
-These results are preliminary and come from a single experimental split. They should not be interpreted as evidence that one model is universally superior.
-
-## Repository Contents
+| Model | Selected Epoch | Validation Accuracy | Validation Macro-F1 | Test Accuracy | Test Macro-F1 |
+|---|---:|---:|---:|---:|---:|
+| ResNet50 | 4 | 57.35% | 0.358 | 64.39% | 0.399 |
+| EfficientNet-B0 | 5 | 66.91% | 0.550 | 73.48% | 0.573 |
+| DenseNet121 | 5 | 59.56% | 0.408 | 71.21% | 0.516 |
 
 - `01_agrivision_dataset_analysis.ipynb` — dataset inspection and analysis.
 - `02_ResNet50_Baseline.ipynb` — ResNet50 baseline experiment.
