@@ -115,17 +115,46 @@ The earlier cleaned Tomato baseline notebook reported:
 
 These are preliminary results from a single experimental split.
 
-### Expanded comparison pilot
+### Expanded comparison pilot — all eight models
 
-The latest saved output from `Copy_of_02_baseline_comparison.ipynb` contains one completed fold for each of eight models across the three crop subsets. The best model in each crop by test macro-F1 in this pilot was:
+The saved output from `Copy_of_02_baseline_comparison(1).ipynb` contains **24 completed pilot runs**: eight architectures for each of Tomato, Papaya and Bottle Gourd, with one test fold per model/crop combination. The table below reports the test accuracy and macro-F1 shown in the notebook's saved summary.
 
-| Crop | Best model in pilot | Test macro-F1 | Test accuracy |
+| Crop | Model | Test accuracy | Test macro-F1 |
 |---|---|---:|---:|
-| Tomato | DenseNet121 | 71.32% | 76.35% |
-| Papaya | ConvNeXtTiny | 67.19% | 70.03% |
-| Bottle Gourd | ConvNeXtTiny | 73.85% | 77.15% |
+| Bottle Gourd | ConvNeXtTiny | 77.15% | 73.85% |
+| Bottle Gourd | DenseNet121 | 77.48% | 71.39% |
+| Bottle Gourd | InceptionV3 | 72.85% | 67.02% |
+| Bottle Gourd | ResNet50 | 73.18% | 65.88% |
+| Bottle Gourd | VGG16 | 72.19% | 64.11% |
+| Bottle Gourd | EfficientNetV2B0 | 68.21% | 62.43% |
+| Bottle Gourd | MobileNetV3Large | 68.87% | 59.79% |
+| Bottle Gourd | Xception | 62.91% | 54.81% |
+| Papaya | ConvNeXtTiny | 70.03% | 67.19% |
+| Papaya | InceptionV3 | 69.36% | 66.08% |
+| Papaya | DenseNet121 | 65.32% | 65.06% |
+| Papaya | VGG16 | 65.99% | 64.85% |
+| Papaya | ResNet50 | 68.01% | 63.13% |
+| Papaya | Xception | 63.30% | 61.11% |
+| Papaya | EfficientNetV2B0 | 57.58% | 57.78% |
+| Papaya | MobileNetV3Large | 57.91% | 54.18% |
+| Tomato | DenseNet121 | 76.35% | 71.32% |
+| Tomato | EfficientNetV2B0 | 69.59% | 67.01% |
+| Tomato | ConvNeXtTiny | 72.97% | 66.80% |
+| Tomato | ResNet50 | 70.95% | 66.36% |
+| Tomato | VGG16 | 71.62% | 65.22% |
+| Tomato | Xception | 68.24% | 62.38% |
+| Tomato | InceptionV3 | 66.22% | 57.64% |
+| Tomato | MobileNetV3Large | 64.19% | 55.39% |
 
-These pilot results are not directly interchangeable with the earlier Tomato baseline results because the notebooks use different experimental workflows and splits. They should not be treated as final estimates or as evidence that one architecture is universally best. The expanded comparison has **one fold per model and crop**, so five-fold evaluation remains to be completed.
+**Best model by test macro-F1 in this pilot:**
+
+- **Tomato:** DenseNet121 — 71.32% macro-F1.
+- **Papaya:** ConvNeXtTiny — 67.19% macro-F1.
+- **Bottle Gourd:** ConvNeXtTiny — 73.85% macro-F1.
+
+Accuracy and macro-F1 can rank models differently: for example, DenseNet121 has slightly higher Bottle Gourd accuracy than ConvNeXtTiny, while ConvNeXtTiny has higher macro-F1. Macro-F1 gives each class equal importance and is particularly useful when disease classes are imbalanced.
+
+These are **pilot results from one fold**, not final performance estimates. The expanded comparison results should not be directly substituted for the earlier Tomato baseline results because the workflows and splits differ. Five-fold evaluation remains to be completed before drawing firm conclusions about which model performs best.
 
 ## Current Research Status and Next Steps
 
